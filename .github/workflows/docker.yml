@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: [nginx:1.23.3-alpine]
+        image: ["nginx:1.23.3-alpine"]
     permissions:
       contents: read
       packages: write
