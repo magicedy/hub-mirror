@@ -39,7 +39,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Mirror Docker Image
+      # Mirror
+      - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
         run: |
           docker pull ${{ matrix.image }}
           docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
