@@ -14,3 +14,5 @@
 |drone/drone:2.16.0|ghcr.io/droplet-js/drone/drone:2.16.0|
 |filebrowser/filebrowser:v2.23.0|ghcr.io/droplet-js/filebrowser/filebrowser:v2.23.0|
 |nginx:1.23.3-alpine|ghcr.io/droplet-js/nginx:1.23.3-alpine|
+
+[docker-compose.yml](./docker-compose.yml)
