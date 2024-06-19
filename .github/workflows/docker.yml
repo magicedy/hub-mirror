@@ -11,7 +11,7 @@ env:
 
 jobs:
   mirror:
-    name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+    name: Mirror ${{ matrix.image }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
