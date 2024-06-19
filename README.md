@@ -7,6 +7,7 @@
 
 eg.
 
+|docker.io|ghcr.io|
 |:---:|:---:|
 |traefik:v3.0.2|ghcr.io/droplet-js/traefik:v3.0.2|
 |portainer/portainer-ce:2.16.2-alpine|ghcr.io/droplet-js/portainer/portainer-ce:2.16.2-alpine|
