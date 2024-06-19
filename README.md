@@ -3,9 +3,7 @@
 > 国内 Docker Hub 无法正常访问
 > 利用 Github Action 将 Docker Hub 上的镜像推送到 Github 镜像仓库
 
-### Setup
-
-eg.
+### eg.
 
 |docker.io|ghcr.io|
 |:---:|:---:|
