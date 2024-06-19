@@ -42,6 +42,7 @@ jobs:
       # Mirror
       - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
         run: |
+          # docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
           docker pull ${{ matrix.image }}
           docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
           docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
