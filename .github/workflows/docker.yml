@@ -43,20 +43,20 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Mirror
-      - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+      - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
         run: |
-          # docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
+          # docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
           platforms=("arm64" "amd64")
           platform_manifests=()
           for platform in "${platforms[@]}"; do
             docker pull --platform $platform ${{ matrix.image }}
-            docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-$platform
-            docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-$platform
-            platform_manifests+=("${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-$platform")
+            docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}-$platform
+            docker push ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}-$platform
+            platform_manifests+=("${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}-$platform")
           done
-          docker manifest create ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }} ${platform_manifests[@]}
-          docker manifest push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+          docker manifest create ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }} ${platform_manifests[@]}
+          docker manifest push ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
