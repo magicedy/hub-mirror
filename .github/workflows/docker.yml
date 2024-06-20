@@ -43,6 +43,11 @@ jobs:
       - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
         run: |
           # docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
-          docker pull ${{ matrix.image }}
-          docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
-          docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+          for arch in arm64 amd64
+          do
+            docker pull --platform $arch ${{ matrix.image }}
+            docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+            docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+            docker rmi ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+            docker rmi ${{ matrix.image }}
+          done
