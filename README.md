@@ -13,6 +13,7 @@
 |gitea/gitea|[ghcr.io/droplet-js/gitea/gitea](../../pkgs/container/gitea%2Fgitea)|
 |drone/drone|[ghcr.io/droplet-js/drone/drone](../../pkgs/container/drone%2Fdrone)|
 |filebrowser/filebrowser|[ghcr.io/droplet-js/filebrowser/filebrowser](../../pkgs/container/filebrowser%2Ffilebrowser)|
-|nginx|[ghcr.io/droplet-js/nginx](../../pkgs/container/redis)|
+|nginx|[ghcr.io/droplet-js/nginx](../../pkgs/container/nginx)|
+|redis|[ghcr.io/droplet-js/redis](../../pkgs/container/redis)|
 
 [docker-compose.yml](./docker-compose.yml)
