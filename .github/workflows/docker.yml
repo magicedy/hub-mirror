@@ -50,13 +50,15 @@ jobs:
       - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
         run: |
           # docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
+          image=${{ matrix.image }}
+          image_mirror=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
           platforms=("arm64" "amd64")
           platform_manifests=()
           for platform in "${platforms[@]}"; do
-            docker pull --platform $platform ${{ matrix.image }}
-            docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}-$platform
-            docker push ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}-$platform
-            platform_manifests+=("${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}-$platform")
+            docker pull --platform $platform $image
+            docker tag $image $image_mirror-$platform
+            docker push $image_mirror-$platform
+            platform_manifests+=("$image_mirror-$platform")
           done
-          docker manifest create ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }} ${platform_manifests[@]}
-          docker manifest push ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
+          docker manifest create $image_mirror ${platform_manifests[@]}
+          docker manifest push $image_mirror
