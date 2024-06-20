@@ -17,11 +17,14 @@ jobs:
       matrix:
         image: 
           - "traefik:v3.0.2"
+          - "portainer/portainer-ce:2.16.2"
           - "portainer/portainer-ce:2.16.2-alpine"
           - "gitea/gitea:1.17.3"
           - "drone/drone:2.16.0"
           - "filebrowser/filebrowser:v2.23.0"
+          - "nginx:1.23.3"
           - "nginx:1.23.3-alpine"
+          - "redis:7.0.4"
           - "redis:7.0.4-alpine"
     permissions:
       contents: read
