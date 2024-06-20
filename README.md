@@ -6,7 +6,7 @@
 
 ### eg.
 
-|docker.io|ghcr.io|
+|docker.io|ghcr.io(Platforms: arm64,amd64)|
 |:---:|:---:|
 |traefik:v3.0.2|ghcr.io/droplet-js/traefik:v3.0.2|
 |portainer/portainer-ce:2.16.2-alpine|ghcr.io/droplet-js/portainer/portainer-ce:2.16.2-alpine|
