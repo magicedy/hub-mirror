@@ -50,8 +50,8 @@ jobs:
       - name: Mirror ${{ matrix.image }} to ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
         run: |
           # docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
-          image=${{ matrix.image }}
-          image_mirror=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
+          image="${{ matrix.image }}"
+          image_mirror="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}"
           platforms=("arm64" "amd64")
           platform_manifests=()
           for platform in "${platforms[@]}"; do
