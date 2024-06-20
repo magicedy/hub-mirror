@@ -46,8 +46,8 @@ jobs:
           for arch in arm64 amd64
           do
             docker pull --platform $arch ${{ matrix.image }}
-            docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
-            docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
-            docker rmi ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
-            docker rmi ${{ matrix.image }}
+            docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-$arch
+            docker push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-$arch
           done
+          docker manifest create ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-arm64 ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}-amd64
+          docker manifest push ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
