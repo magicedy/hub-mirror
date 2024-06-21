@@ -58,14 +58,27 @@ jobs:
           image="${{ matrix.image }}"
           image_mirror="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}"
           docker manifest inspect $image
-          platforms=($(docker manifest inspect $image | jq -r '.manifests[] | select(.platform.os == "linux") | select(.platform.architecture != "unknown") | .platform.architecture'))
+          platforms=($(docker manifest inspect $image | jq -r '.manifests[] | select(.platform.os == "linux") | select(.platform.architecture != "unknown") | "\(.platform.architecture)|\(.platform.os)|\(.platform.variant)"'))
           echo "platforms: ${platforms[@]}"
           platform_manifests=()
           for platform in "${platforms[@]}"; do
-            docker pull --platform $platform $image
-            docker tag $image $image_mirror-$platform
-            docker push $image_mirror-$platform
-            platform_manifests+=("$image_mirror-$platform")
+            IFS='|' read -ra arr <<< "$platform"
+            architecture=${arr[0]}
+            os=${arr[1]}
+            variant=${arr[2]}
+            if [ "$variant" == "null" ] || [ "$variant" == "" ]; then
+              echo "os: $os, architecture: $architecture"
+              docker pull --platform $os/$architecture $image
+              docker tag $image $image_mirror-$os-$architecture
+              docker push $image_mirror-$os-$architecture
+              platform_manifests+=("$image_mirror-$os-$architecture")
+            else
+              echo "os: $os, architecture: $architecture, variant: $variant"
+              docker pull --platform $os/$architecture/$variant $image
+              docker tag $image $image_mirror-$os-$architecture-$variant
+              docker push $image_mirror-$os-$architecture-$variant
+              platform_manifests+=("$image_mirror-$os-$architecture-$variant")
+            fi
           done
           docker manifest create $image_mirror ${platform_manifests[@]}
           docker manifest push $image_mirror
