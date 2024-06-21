@@ -6,7 +6,7 @@
 
 ### eg.
 
-|docker.io|ghcr.io(Platforms: arm64,amd64)|
+|docker.io|ghcr.io|
 |:---:|:---:|
 |traefik|[ghcr.io/hub-mirror/traefik](../../pkgs/container/traefik)|
 |portainer/portainer-ce|[ghcr.io/hub-mirror/portainer/portainer-ce](../../pkgs/container/portainer%2Fportainer-ce)|
