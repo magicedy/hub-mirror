@@ -58,6 +58,7 @@ jobs:
           image="${{ matrix.image }}"
           image_mirror="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}"
           platforms=($(docker manifest inspect $image | jq -r '.manifests[] | .platform.architecture'))
+          echo ${platforms[@]}
           platform_manifests=()
           for platform in "${platforms[@]}"; do
             docker pull --platform $platform $image
