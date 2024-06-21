@@ -57,7 +57,7 @@ jobs:
           # docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
           image="${{ matrix.image }}"
           image_mirror="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}"
-          platforms=($(docker manifest inspect $image | jq -r '.manifests[] | | select(.platform.architecture != "unknown") | .platform.architecture'))
+          platforms=($(docker manifest inspect $image | jq -r '.manifests[] | select(.platform.architecture != "unknown") | .platform.architecture'))
           echo "platforms: ${platforms[@]}"
           platform_manifests=()
           for platform in "${platforms[@]}"; do
