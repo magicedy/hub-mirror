@@ -18,7 +18,7 @@ jobs:
         image: 
            - "gitea/gitea:latest"
            - "gitea/act_runner:latest"
-           - "headscale/headscale:latest"
+#           - "headscale/headscale:latest"
            - "xhofe/alist:latest"
            - "mysql:8"
            - "redis:6.2-alpine"
