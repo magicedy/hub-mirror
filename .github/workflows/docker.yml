@@ -23,6 +23,7 @@ jobs:
            - "mysql:8"
            - "redis:6.2-alpine"
            - "tensorchord/pgvecto-rs:pg14-v0.2.0"
+           - "willfarrell/autoheal:latest"
 
     permissions:
       contents: read
