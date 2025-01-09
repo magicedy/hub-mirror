@@ -24,6 +24,9 @@ jobs:
            - "redis:6.2-alpine"
            - "tensorchord/pgvecto-rs:pg14-v0.2.0"
            - "willfarrell/autoheal:latest"
+           - "unityci/editor:2021.3.38f1-windows-mono-3"
+           - "unityci/editor:2021.3.38f1-android-3"
+           - "unityci/editor:2021.3.38f1-webgl-3"
 
     permissions:
       contents: read
