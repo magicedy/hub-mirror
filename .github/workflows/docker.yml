@@ -18,6 +18,7 @@ jobs:
         image: 
            - "gitea/gitea:latest"
            - "gitea/gitea:1.24.0-rc0"
+           - "gitea/gitea:1.24-nightly"
            - "gitea/act_runner:latest"
            - "xhofe/alist:latest"
            - "mysql:8"
