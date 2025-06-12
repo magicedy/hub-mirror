@@ -17,10 +17,8 @@ jobs:
       matrix:
         image: 
            - "gitea/gitea:latest"
-           - "gitea/gitea:1.24.0-rc0"
-           - "gitea/gitea:1.24-nightly"
            - "gitea/act_runner:latest"
-           - "xhofe/alist:latest"
+           - "xhofe/alist:v3.40.0"
            - "mysql:8"
            - "redis:6.2-alpine"
            - "valkey/valkey:8-bookworm"
